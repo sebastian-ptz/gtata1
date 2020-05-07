@@ -5,23 +5,36 @@ public class UIManager : Singleton<UIManager>
    [SerializeField] private GameObject MainMenuUI;
    [SerializeField] private GameObject levelSelectionUI;
    [SerializeField] private GameObject controlUI;
+   [SerializeField] private GameObject pauseUI;
 
-       private void Start()
+    private void Start()
     {
         GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);        
     }
 
     void HandleGameStateChanged(GameManager.GameState currentState, GameManager.GameState previousState)
     {
-        if (previousState == GameManager.GameState.PREGAME && currentState == GameManager.GameState.RUNNING)
+        if (currentState == GameManager.GameState.PREGAME)
         {
-            Debug.Log("GameStateChanged");
+            pauseUI.SetActive(false);
         }
 
-        if (previousState != GameManager.GameState.PREGAME && currentState == GameManager.GameState.PREGAME)
+        if (previousState == GameManager.GameState.PREGAME && currentState == GameManager.GameState.RUNNING)
         {
+            pauseUI.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
-            Debug.Log("GameStateChanged");
+        if (currentState == GameManager.GameState.RUNNING)
+        {
+            pauseUI.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (previousState == GameManager.GameState.RUNNING && currentState == GameManager.GameState.PAUSED)
+        {
+            pauseUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -48,5 +61,10 @@ public class UIManager : Singleton<UIManager>
        controlUI.SetActive(false);
        levelSelectionUI.SetActive(false);    
    }
+
+    public void onClickPlay()
+    {
+        levelSelectionUI.SetActive(false);
+    }
 
 }
