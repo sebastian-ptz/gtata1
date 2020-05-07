@@ -123,6 +123,17 @@ public class GameManager : Singleton<GameManager>
         Destroy(gameObject);
     }
 
+    public void UnloadLevelReset(string levelName)
+    {
+        AsyncOperation ao = SceneManager.LoadSceneAsync(levelName);
+        if (ao == null)
+        {
+            Debug.LogError("[GameManager] Unable to unload level" + levelName);
+            return;
+        }
+        ao.completed += OnUnloadOperationComplete;
+    }
+
     void OnUnloadOperationComplete(AsyncOperation ao)
     {
         Debug.Log("Unload Complete");
@@ -135,7 +146,9 @@ public class GameManager : Singleton<GameManager>
 
     public void RestartGame()
     {
-        UpdateState(GameState.PREGAME);
+        UpdateState(GameState.RUNNING);
+        string previousLevelName = SceneManager.GetActiveScene().name;
+        UnloadLevelReset(previousLevelName);
     }
 
     public void BackToMenu()

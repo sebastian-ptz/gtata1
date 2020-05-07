@@ -28,12 +28,14 @@ public class UIManager : Singleton<UIManager>
         if (currentState == GameManager.GameState.RUNNING)
         {
             pauseUI.SetActive(false);
+            MainMenuUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
         }
 
         if (previousState == GameManager.GameState.RUNNING && currentState == GameManager.GameState.PAUSED)
         {
             pauseUI.SetActive(true);
+            MainMenuUI.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
         }
     }
