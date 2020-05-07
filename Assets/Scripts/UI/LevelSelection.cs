@@ -19,19 +19,22 @@ public class LevelSelection : MonoBehaviour
 
     public void sceneLevel1()
     {
+        UIManager.Instance.onClickPlay();
         GameManager.Instance.StartGame();
         SceneManager.LoadScene(1);
     }
 
     public void sceneLevel2()
     {
+        UIManager.Instance.onClickPlay();
         GameManager.Instance.StartGame();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void sceneLevel3()
     {
+        UIManager.Instance.onClickPlay();
         GameManager.Instance.StartGame();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 }

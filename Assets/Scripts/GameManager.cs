@@ -13,7 +13,10 @@ public class GameManager : Singleton<GameManager>
     }
 
     private GameState _currentGameState = GameState.PREGAME;
+
     public Events.EventGameState OnGameStateChanged;
+
+    public GameObject[] SystemPrefabs;
     List<AsyncOperation> _loadOperations;
 
     string _currentLevelName = string.Empty;
@@ -21,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        
+
         _loadOperations = new List<AsyncOperation>();
     }
 
@@ -34,7 +37,8 @@ public class GameManager : Singleton<GameManager>
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("TogglePause();");
+            TogglePause();
+            Debug.Log("Pause Toggle");
         }
     }
 
@@ -85,11 +89,12 @@ public class GameManager : Singleton<GameManager>
         }
 
         OnGameStateChanged.Invoke(_currentGameState, previousGameState);
+        Debug.Log(_currentGameState);
     }
 
     public void StartGame()
     {
-        LoadLevel("Main");
+        LoadLevel("MainMenu");
     }
 
     public void LoadLevel(string levelName)
@@ -104,5 +109,51 @@ public class GameManager : Singleton<GameManager>
         ao.completed += OnLoadOperationComplete;
         _loadOperations.Add(ao);
         _currentLevelName = levelName;
+    }
+
+    public void UnloadLevel(string levelName)
+    {
+        AsyncOperation ao = SceneManager.LoadSceneAsync(levelName);
+        if (ao == null)
+        {
+            Debug.LogError("[GameManager] Unable to unload level" + levelName);
+            return;
+        }
+        ao.completed += OnUnloadOperationComplete;
+        Destroy(gameObject);
+    }
+
+    public void UnloadLevelReset(string levelName)
+    {
+        AsyncOperation ao = SceneManager.LoadSceneAsync(levelName);
+        if (ao == null)
+        {
+            Debug.LogError("[GameManager] Unable to unload level" + levelName);
+            return;
+        }
+        ao.completed += OnUnloadOperationComplete;
+    }
+
+    void OnUnloadOperationComplete(AsyncOperation ao)
+    {
+        Debug.Log("Unload Complete");
+    }
+
+    public void TogglePause()
+    {
+        UpdateState(_currentGameState == GameState.RUNNING ? GameState.PAUSED : GameState.RUNNING);
+    }
+
+    public void RestartGame()
+    {
+        UpdateState(GameState.RUNNING);
+        string previousLevelName = SceneManager.GetActiveScene().name;
+        UnloadLevelReset(previousLevelName);
+    }
+
+    public void BackToMenu()
+    {
+        UpdateState(GameState.PREGAME);
+        UnloadLevel(_currentLevelName);
     }
 }
