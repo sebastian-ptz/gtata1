@@ -45,4 +45,12 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+    public void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "Sphere")
+        {
+            Debug.Log("collision");
+        }
+    }
 }
