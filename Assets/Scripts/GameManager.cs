@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,10 +10,11 @@ public class GameManager : Singleton<GameManager>
     {
         PREGAME,
         RUNNING,
-        PAUSED
+        PAUSED,
+        END,
     }
 
-    private GameState _currentGameState = GameState.PREGAME;
+    public GameState _currentGameState { get; private set; } = GameState.PREGAME;
 
     public Events.EventGameState OnGameStateChanged;
 
@@ -56,7 +58,6 @@ public class GameManager : Singleton<GameManager>
 
         Debug.Log("Load Complete");
     }
-
     public GameState CurrentGameState
     {
         get { return _currentGameState; }
