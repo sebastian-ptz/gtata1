@@ -8,6 +8,16 @@ public class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
-       CancelExectution.onClick.AddListener(UIManager.Instance.HandleMenuExecution);
+       CancelExectution.onClick.AddListener(OvertakeMenu);
+    }
+
+    public void OvertakeMenu()
+    {
+        UIManager.Instance.HandleMenuExecution(GameManager.Instance._currentGameState);
+    }
+
+    public void ExecuteSettings()
+    {
+        //TODO EInstellungen für das Spiel z.B. Mausempfidnlichkeit
     }
 }

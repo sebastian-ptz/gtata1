@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+
     [SerializeField] private Button ResumeButton;
     [SerializeField] private Button RestartButton;
     [SerializeField] private Button LoadLevelButton;
@@ -18,6 +19,7 @@ public class PauseMenu : MonoBehaviour
         ResumeButton.onClick.AddListener(HandleResume);
         RestartButton.onClick.AddListener(HandleRestart);
         LoadLevelButton.onClick.AddListener(HadleLoading);
+        SettingsButoon.onClick.AddListener(HandleSettings);
         MainMenuButoon.onClick.AddListener(MainMenuButton);
         RageQuitButton.onClick.AddListener(HandleRageQuit);
     }
@@ -38,6 +40,10 @@ public class PauseMenu : MonoBehaviour
         LoadLevelButton.onClick.AddListener(UIManager.Instance.HandleLevelSelect);
     }
 
+    private void HandleSettings()
+    {
+        UIManager.Instance.HandleSetting();
+    }
 
     private void MainMenuButton()
     {

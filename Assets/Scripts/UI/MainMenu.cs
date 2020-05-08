@@ -11,7 +11,12 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         LevelSelection.onClick.AddListener(UIManager.Instance.HandleLevelSelect);
-        Settings.onClick.AddListener(UIManager.Instance.HandleSettings);
+        Settings.onClick.AddListener(HandleSettings);
         Quit.onClick.AddListener(UIManager.Instance.HandleQuit);
+    }
+
+    private void HandleSettings()
+    {
+        UIManager.Instance.HandleSetting();
     }
 }
