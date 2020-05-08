@@ -5,12 +5,15 @@ public class TerrainSpawner : MonoBehaviour
     [SerializeField] private GameObject[] ObjectToSpawn;
     [SerializeField] private int density;
 
-
-    int terrainWidth = 500/2;
-    int terrainHeight = 500/2;
+    Terrain rend;
 
     private void Start()
     {
+        rend = GetComponent<Terrain>();
+        
+        float terrainWidth = rend.terrainData.size.x / 2;
+        float terrainHeight = rend.terrainData.size.z / 2;
+
         float edgeX = transform.position.x + terrainWidth;
         float edgeZ = transform.position.z + terrainHeight;
         float transformScaleX = terrainWidth * transform.lossyScale.x;
