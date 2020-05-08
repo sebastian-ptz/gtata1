@@ -375,7 +375,7 @@ RectTransform:
   m_Children:
   - {fileID: 433924174}
   m_Father: {fileID: 760366671}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -414,7 +414,7 @@ RectTransform:
   m_Children:
   - {fileID: 1324696380}
   m_Father: {fileID: 760366671}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -950,7 +950,7 @@ RectTransform:
   m_Children:
   - {fileID: 522557378}
   m_Father: {fileID: 760366671}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1991,10 +1991,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 473017435}
   - {fileID: 971060288}
   - {fileID: 325689092}
   - {fileID: 265776486}
-  - {fileID: 473017435}
   m_Father: {fileID: 1365777711}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2471,7 +2471,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919107997}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2729,7 +2729,7 @@ RectTransform:
   m_Children:
   - {fileID: 1271813320}
   m_Father: {fileID: 760366671}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3097,7 +3097,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303308542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3389,12 +3389,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab888b17b47851439d4223cefc4a53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Resume: {fileID: 397315662}
-  Restart: {fileID: 1842972972}
-  LoadGame: {fileID: 1545035240}
-  Settings: {fileID: 614878808}
-  MainMenu: {fileID: 707186372}
-  RageQuit: {fileID: 844508878}
+  ResumeButton: {fileID: 397315662}
+  RestartButton: {fileID: 1842972972}
+  LoadLevelButton: {fileID: 1545035240}
+  SettingsButoon: {fileID: 614878808}
+  MainMenuButoon: {fileID: 707186372}
+  RageQuitButton: {fileID: 844508878}
 --- !u!114 &1365777706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3407,8 +3407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ebc466e9e6bc44f8d1146ae20e5112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Apply: {fileID: 822387197}
-  Cancel: {fileID: 1959003611}
+  CancelExectution: {fileID: 1959003611}
+  ApplySettings: {fileID: 822387197}
 --- !u!114 &1365777707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3453,9 +3453,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenu: {fileID: 1107371970}
-  SettingsMenu: {fileID: 569808784}
-  PauseMenu: {fileID: 1303308542}
   LevelSelection: {fileID: 760366670}
+  SettingsMenu: {fileID: 919107997}
+  PauseMenu: {fileID: 1303308542}
 --- !u!114 &1365777710
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,12 +6,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button LevelSelection;
     [SerializeField] private Button Settings;
     [SerializeField] private Button Quit;
+    private bool SettingsChanged;
 
     private void Start()
     {
-        UIManager.Instance.setGameLock(true);
-        LevelSelection.onClick.AddListener(UIManager.Instance.OnClickLevelSelection);
-        Settings.onClick.AddListener(UIManager.Instance.OnClickSettings);
-        Quit.onClick.AddListener(UIManager.Instance.OnClickQuit);
+        LevelSelection.onClick.AddListener(UIManager.Instance.HandleLevelSelect);
+        Settings.onClick.AddListener(UIManager.Instance.HandleSettings);
+        Quit.onClick.AddListener(UIManager.Instance.HandleQuit);
     }
 }

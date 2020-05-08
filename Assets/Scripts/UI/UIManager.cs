@@ -1,23 +1,18 @@
 ﻿using System;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Experimental.PlayerLoop;
-using UnityEngine.Experimental.UIElements;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
     [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject LevelSelection;
     [SerializeField] private GameObject SettingsMenu;
     [SerializeField] private GameObject PauseMenu;
-    [SerializeField] private GameObject LevelSelection;
-a
+
     private void Start()
     {
         GameManager.Instance.OnGameStateChanged.AddListener(HandleGameStateChanged);
     }
-
     void HandleGameStateChanged(GameManager.GameState currentState, GameManager.GameState previousState)
     {
         if (currentState == GameManager.GameState.PREGAME)
@@ -44,55 +39,34 @@ a
             MainMenu.SetActive(false);
             Cursor.lockState = CursorLockMode.None;
         }
-
-        //if (previousState == GameManager.GameState.PAUSED && currentState == GameManager.GameState.RUNNING)
-        //{
-
-        //    PauseMenu.SetActive(false);
-        //    LevelSelection.SetActive(false);
-        //    Cursor.lockState = CursorLockMode.Locked;
-        //}
     }
 
-    public void OnClickLevelSelection()
+    internal void HandleSettings()
     {
         MainMenu.SetActive(false);
-        PauseMenu.SetActive(false);
-        LevelSelection.SetActive(true);
-    }
-
-    public void OnClickSettings()
-    {
-        PauseMenu.SetActive(false);
         SettingsMenu.SetActive(true);
     }
 
-    public void OnClickToggleMainMenu()
+    public void HandleLevelSelect()
     {
-        LevelSelection.SetActive(false);
-        SettingsMenu.SetActive(false);
-        PauseMenu.SetActive(false);
-        MainMenu.SetActive(true);
-
-        //string levelname = SceneManager.GetActiveScene().name;
-    }
-
-    public void OnClickTogglePause()
-    {
-        LevelSelection.SetActive(false);
-        SettingsMenu.SetActive(false);
         MainMenu.SetActive(false);
-        PauseMenu.SetActive(true);
+        LevelSelection.SetActive(true);
     }
 
-    public void OnClickLevel()
-    {
-        LevelSelection.SetActive(false);
-    }
-
-
-    public void OnClickQuit()
+    public void HandleQuit()
     {
         Application.Quit();
+    }
+
+    public void HandleMenuExecution()
+    {
+        MainMenu.SetActive(true);
+        SettingsMenu.SetActive(false);
+        LevelSelection.SetActive(false);
+    }
+
+    public void OnClickPlay()
+    {
+        LevelSelection.SetActive(false);
     }
 }

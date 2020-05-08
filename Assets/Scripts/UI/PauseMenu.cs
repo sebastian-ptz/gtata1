@@ -1,57 +1,50 @@
 ﻿using System;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private Button Resume;
-    [SerializeField] private Button Restart;        //TODO Saving
-    [SerializeField] private Button LoadGame;       //TODO Loading
-    [SerializeField] private Button Settings;
-    [SerializeField] private Button MainMenu;
-    [SerializeField] private Button RageQuit;
+    [SerializeField] private Button ResumeButton;
+    [SerializeField] private Button RestartButton;
+    [SerializeField] private Button LoadLevelButton;
+    [SerializeField] private Button SettingsButoon;
+    [SerializeField] private Button MainMenuButoon;
+    [SerializeField] private Button RageQuitButton;
 
     private void Start()
-    {       
-        Resume.onClick.AddListener(OnClickResume);
-        Restart.onClick.AddListener(OnClickRestart); //TODO Saving
-        LoadGame.onClick.AddListener(OnClickLoadGame); //TODO Loading
-        Settings.onClick.AddListener(OnClickSettings);
-        MainMenu.onClick.AddListener(OnClickMainMenu);
-        RageQuit.onClick.AddListener(UIManager.Instance.OnClickQuit);
+    {
+        ResumeButton.onClick.AddListener(HandleResume);
+        RestartButton.onClick.AddListener(HandleRestart);
+        LoadLevelButton.onClick.AddListener(HadleLoading);
+        MainMenuButoon.onClick.AddListener(MainMenuButton);
+        RageQuitButton.onClick.AddListener(HandleRageQuit);
     }
 
-    void OnClickResume()
+
+    private void HandleResume()
     {
         GameManager.Instance.TogglePause();
-        //UIManager.Instance.OnClickToggleMenu();
     }
 
-    void OnClickRestart()
+    private void HandleRestart()
     {
-        //TODO OnClickSave overwrite savegame
         GameManager.Instance.RestartGame();
     }
 
-    private void OnClickLoadGame()
+    private void HadleLoading()
     {
-        UIManager.Instance.setGameLock(true);
-        LoadGame.onClick.AddListener(UIManager.Instance.OnClickLevelSelection);
+        LoadLevelButton.onClick.AddListener(UIManager.Instance.HandleLevelSelect);
     }
 
-    private void OnClickSettings()
+
+    private void MainMenuButton()
     {
-        UIManager.Instance.setGameLock(true);
-        Settings.onClick.AddListener(UIManager.Instance.OnClickSettings);
+        GameManager.Instance.BackToMenu();
     }
 
-    public void OnClickMainMenu()
-    {
-        UIManager.Instance.OnClickToggleMenu();
-    }
-
-    void OnClickQuit()
+    private void HandleRageQuit()
     {
         Application.Quit();
     }
